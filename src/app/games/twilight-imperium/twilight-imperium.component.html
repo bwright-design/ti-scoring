@@ -1,0 +1,15 @@
+<section>
+    <div class="obj-cards stage-one">
+        <div class="card" *ngFor='let points of cards(5) ;let i= index'>{{ i + 1 }}</div>
+    </div>
+</section>
+<section>
+    <div id="ti-score-tracker">
+        <div class="number" *ngFor='let points of point(14) ;let i= index'>{{ i + 1 }}</div>
+    </div>
+</section>
+<section>
+    <div class="obj-cards stage-two">
+        <div class="card" *ngFor='let points of cards(5) ;let i= index'>{{ i + 1 }}</div>
+    </div>
+</section>

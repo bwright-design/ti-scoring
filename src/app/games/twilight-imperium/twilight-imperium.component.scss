@@ -1,0 +1,36 @@
+section{
+    margin:30px;
+}
+
+#ti-score-tracker{
+    width:100%;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: center;
+    height: 100px; //TODO BW: Remove after better css
+    .number{
+        flex-grow: 1;
+        text-align:center;
+        border:1px solid black;
+    }
+}
+
+
+.obj-cards{
+    width:100%;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: center;
+    height: 100px; //TODO BW: Remove after better css
+    .card{
+        flex-grow: 1;
+        text-align:center;
+        border:1px solid black;
+    }
+    &.stage-one .card{
+        background-color:blue;
+    }
+    &.stage-two .card{
+        background-color:red;
+    }
+}
