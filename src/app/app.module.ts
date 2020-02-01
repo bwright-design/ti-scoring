@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TwilightImperiumComponent } from './games/twilight-imperium/twilight-imperium.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TwilightImperiumComponent
   ],
   imports: [
     BrowserModule,
