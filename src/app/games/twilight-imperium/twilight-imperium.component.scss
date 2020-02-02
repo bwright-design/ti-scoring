@@ -45,8 +45,21 @@ section{
     color:#ffffff;
     .number{
         flex-grow: 1;
+        display:flex;
+        align-items: center;
+        justify-content: center;
         text-align:center;
-        border:1px solid red;
+        border:1px solid #e63838;
+        filter: drop-shadow( 0px 0px 10px #d41010);
+        font-size:20px;
+        font-weight:900;
+        color:#e63838;
+        &:first-child{
+            border-radius:10px 0 0 10px;
+        }
+        &:last-child{
+            border-radius:0 10px 10px 0;
+        }
     }
 }
 
