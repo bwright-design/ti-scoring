@@ -1,17 +1,17 @@
 <div class="stars"></div>
 <section>
     <div class="obj-cards stage-one">
-        <div class="card" *ngFor='let points of cards(5) ;let i= index'>
+        <div class="card" *ngFor='let card of objOneCards | slice:0:5;' (click)="showWindow(i)">
             <div class="stars"></div>
             <div class="card-objs">
                 <div class="card-header">
-                    LEAD FROM THE FRONT
+                    {{ card.name }}
                 </div>
                 <div class="card-body">
-                    Spend a total of 3 tokens from your tactic and/or stategy pools.
+                    {{ card.condition }}
                 </div>
                 <div class="points">
-                    {{ i + 1 }}
+                    {{ card.points }}
                 </div>
                 <div class="card-footer">
                     victory points
@@ -22,6 +22,7 @@
 </section>
 <section>
     <div id="ti-score-tracker">
+        <div id="score-marker" class="green"></div>
         <div class="number" *ngFor='let points of point(14) ;let i= index'>{{ i + 1 }}</div>
     </div>
 </section>
@@ -44,5 +45,23 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<div class="overlay" *ngIf="window" (click)="showWindow()"></div>
+<section id="window" *ngIf="window" (keypress)="handleInput($event)">
+    <div class="wrap">
+        ti-score-tracker
+        {{configOpPoints[i]}}
+        <button (click)="addScore()"> add score</button>
+        <button class="close-btn" (click)="showWindow()"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><input type="checkbox" (checked)="yourfunc()"> Black</li>
+            <li><input type="checkbox" (checked)="yourfunc()"> Blue</li>
+            <li><input type="checkbox" (checked)="yourfunc()"> Green</li>
+            <li><input type="checkbox" (checked)="yourfunc()"> Purple</li>
+            <li><input type="checkbox" (checked)="yourfunc()"> Red</li>
+            <li><input type="checkbox" (checked)="yourfunc()"> Yellow</li>
+        </ul>
     </div>
 </section>
