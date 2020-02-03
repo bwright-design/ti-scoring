@@ -1,1 +1,17 @@
-<p>stage-one works!</p>
+<div class="card" (click)="showWindow(i)">
+    <div class="stars"></div>
+    <div class="card-objs">
+        <div class="card-header">
+            {{ card.name }}
+        </div>
+        <div class="card-body">
+            {{ card.condition }}
+        </div>
+        <div class="points">
+            {{ card.points }}
+        </div>
+        <div class="card-footer">
+            victory points
+        </div>
+    </div>
+</div>
