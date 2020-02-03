@@ -1,12 +1,15 @@
 <div class="stars"></div>
 <section>
     <div class="obj-cards stage-one">
-        <ti-stage-one *ngFor="let card of objOneCards" (click)="showWindow(i)"></ti-stage-one>
-        TRYING TO ngfor a component usings its array and display a set of 5 random ones
+        <ti-stage-one *ngFor="let cardIndex of shuffleIndices" (click)="showWindow(cardIndex, 1)" [stageOneCard]="objOneCards[cardIndex]"></ti-stage-one>
     </div>
 </section>
+<div style="color:white;">
+	Blue: {{ players[0].totalScore }}
+	Green: {{ players[1].totalScore }}
+</div>
 <!-- <section>
-    <div class="obj-cards stage-one">ç
+    <div class="obj-cards stage-one">
         <div class="card" *ngFor='let card of objOneCards | slice:0:5;' (click)="showWindow(i)">
             <div class="stars"></div>
             <div class="card-objs">
@@ -34,7 +37,7 @@
 </section>
 <section>
     <div class="obj-cards stage-two">
-        <ti-stage-two></ti-stage-two>
+        <!--<ti-stage-two></ti-stage-two>-->
     </div>
 </section>
 <!-- <section>
@@ -59,20 +62,21 @@
     </div>
 </section> -->
 
-<div class="overlay" *ngIf="window" (click)="showWindow()"></div>
+<div class="overlay" *ngIf="window" (click)="hideWindow()"></div>
 <section id="window" *ngIf="window" (keypress)="handleInput($event)">
     <div class="wrap">
         ti-score-tracker
-        {{configOpPoints[i]}}
+        {{ objOneCards[windowIndex].name }}
         <button (click)="addScore()"> add score</button>
-        <button class="close-btn" (click)="showWindow()"><i class="fas fa-times"></i></button>
+        <button class="close-btn" (click)="hideWindow()"><i class="fas fa-times"></i></button>
         <ul>
-            <li><input type="checkbox" (checked)="yourfunc()"> Black</li>
-            <li><input type="checkbox" (checked)="yourfunc()"> Blue</li>
-            <li><input type="checkbox" (checked)="yourfunc()"> Green</li>
-            <li><input type="checkbox" (checked)="yourfunc()"> Purple</li>
-            <li><input type="checkbox" (checked)="yourfunc()"> Red</li>
-            <li><input type="checkbox" (checked)="yourfunc()"> Yellow</li>
+            <li><input type="checkbox" (change)="checkBoxChanged($event, 'green', windowIndex, windowLevel)"> green</li>
+			<li><input type="checkbox" (change)="checkBoxChanged($event, 'blue', windowIndex, windowLevel)"> blue</li>
+            <!--<li><input type="checkbox" (checked)=""> Blue</li>
+            <li><input type="checkbox" (checked)=""> Green</li>
+            <li><input type="checkbox" (checked)=""> Purple</li>
+            <li><input type="checkbox" (checked)=""> Red</li>
+            <li><input type="checkbox" (checked)=""> Yellow</li>-->
         </ul>
     </div>
 </section>
