@@ -15,6 +15,7 @@ export class TwilightImperiumComponent implements OnInit {
 
     ngOnInit() {
         this.shuffle();
+        this.shuffleTwo();
     }
 
     point = Array;
@@ -23,7 +24,8 @@ export class TwilightImperiumComponent implements OnInit {
     windowIndex: number;
     windowLevel: number;
     check: boolean = false;
-    shuffleIndices: number[] = [];
+    shuffleStageOne: number[] = [];
+    shuffleStageTwo: number[] = [];
 
     addScore() {
         var val = (parseInt(document.getElementById('score-marker').style.left, 10) || 0) + 50;
@@ -65,7 +67,7 @@ export class TwilightImperiumComponent implements OnInit {
         if (e.target.checked == true) {
             this.checked(player, card, level);
         } else {
-            //this.unchecked(player, card, level);
+            this.unchecked(player, card, level);
         }
     }
 
@@ -81,7 +83,7 @@ export class TwilightImperiumComponent implements OnInit {
         this.calcScore();
     }
 
-    /*unchecked(player: string, card: number, level: number) {
+    unchecked(player: string, card: number, level: number) {
         let playerIndex = this.players.findIndex( (i) => {
             return i.color == player;
         });
@@ -91,7 +93,7 @@ export class TwilightImperiumComponent implements OnInit {
             this.players[playerIndex].stageTwoObj.slice(card);
         }
         this.calcScore();
-    }*/
+    }
 
     calcScore() {
         this.players.forEach( (player) => {
@@ -101,17 +103,32 @@ export class TwilightImperiumComponent implements OnInit {
 
     shuffle() {
         /*for(var i = 0; i < 5; i++) {
-            this.shuffleIndices.push(Math.floor(Math.random() * 10));
+            this.shuffleStageOne.push(Math.floor(Math.random() * 10));
         }*/
-        while (this.shuffleIndices.length < 5) {
+        while (this.shuffleStageOne.length < 5) {
             let randomIndex: number = Math.floor(Math.random() * 10);
-            if (this.shuffleIndices.findIndex((i) => {
+            if (this.shuffleStageOne.findIndex((i) => {
                 return i == randomIndex
             }) < 0) {
-                this.shuffleIndices.push(randomIndex);
+                this.shuffleStageOne.push(randomIndex);
             } else {
             }
-            console.log(JSON.stringify(this.shuffleIndices));
+            console.log(JSON.stringify(this.shuffleStageOne));
+        }
+    }
+    shuffleTwo() {
+        /*for(var i = 0; i < 5; i++) {
+            this.shuffleStageOne.push(Math.floor(Math.random() * 10));
+        }*/
+        while (this.shuffleStageTwo.length < 5) {
+            let randomIndex: number = Math.floor(Math.random() * 10);
+            if (this.shuffleStageTwo.findIndex((i) => {
+                return i == randomIndex
+            }) < 0) {
+                this.shuffleStageTwo.push(randomIndex);
+            } else {
+            }
+            console.log(JSON.stringify(this.shuffleStageTwo));
         }
     }
 
@@ -169,7 +186,58 @@ export class TwilightImperiumComponent implements OnInit {
             points: '1'
         }
     ];
-
+    objTwoCards = [
+        {
+            name: 'Centralize Galactic Trade',
+            condition: 'Spend 10 trade goods',
+            points: '2'
+        },
+        {
+            name: 'Conquer the Weak',
+            condition: 'Control 1 planet that is in another player\'s home system',
+            points: '2'
+        },
+        {
+            name: 'Form Galactic Brain Trust',
+            condition: 'Control 5 planets that have technology specialties',
+            points: '2'
+        },
+        {
+            name: 'Found a Golden Age',
+            condition: 'Spend 16 resources',
+            points: '2'
+        },
+        {
+            name: 'Galvanize the People',
+            condition: 'Spend a total of 6 tokens from your tactic and/or strategy pools',
+            points: '2'
+        },
+        {
+            name: 'Manipulate Galactic Law',
+            condition: 'Spend 16 influence',
+            points: '2'
+        },
+        {
+            name: 'Master the Sciences',
+            condition: 'Own 2 technologies in each of 4 colors',
+            points: '2'
+        },
+        {
+            name: 'Revolutionize Warfare',
+            condition: 'Own 3 unit upgrade technologies',
+            points: '2'
+        },
+        {
+            name: 'Subdue the Galaxy',
+            condition: 'Control 11 planets in non-home systems',
+            points: '2'
+        },
+        {
+            name: 'Unify the Colonies',
+            condition: 'Control 6 planets that each have the same planet trait',
+            points: '2'
+        }
+    ]
     players = [
         {
             color: 'blue',

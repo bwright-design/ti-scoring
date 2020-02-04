@@ -1,7 +1,7 @@
 <div class="stars"></div>
 <section>
     <div class="obj-cards stage-one">
-        <ti-stage-one *ngFor="let cardIndex of shuffleIndices" (click)="showWindow(cardIndex, 1)" [stageOneCard]="objOneCards[cardIndex]"></ti-stage-one>
+        <ti-stage-one *ngFor="let cardIndex of shuffleStageOne" (click)="showWindow(cardIndex, 1)" [stageOneCard]="objOneCards[cardIndex]"></ti-stage-one>
     </div>
 </section>
 <div style="color:white;">
@@ -37,7 +37,7 @@
 </section>
 <section>
     <div class="obj-cards stage-two">
-        <!--<ti-stage-two></ti-stage-two>-->
+		<ti-stage-two *ngFor="let cardIndex of shuffleStageTwo" (click)="showWindow(cardIndex, 2)" [stageTwoCard]="objTwoCards[cardIndex]"></ti-stage-two>
     </div>
 </section>
 <!-- <section>
@@ -66,7 +66,8 @@
 <section id="window" *ngIf="window" (keypress)="handleInput($event)">
     <div class="wrap">
         ti-score-tracker
-        {{ objOneCards[windowIndex].name }}
+		<ti-stage-one [stageOneCard]="objOneCards[windowIndex]" *ngIf="objOneCards"></ti-stage-one>
+		<ti-stage-two [stageTwoCard]="objOneCards[windowIndex]" *ngIf="objTwoCards"></ti-stage-two>
         <button (click)="addScore()"> add score</button>
         <button class="close-btn" (click)="hideWindow()"><i class="fas fa-times"></i></button>
         <ul>
