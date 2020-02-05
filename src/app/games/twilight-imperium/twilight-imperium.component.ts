@@ -237,7 +237,7 @@ export class TwilightImperiumComponent implements OnInit {
             condition: 'Control 6 planets that each have the same planet trait',
             points: '2'
         }
-    ]
+    ];
     players = [
         {
             color: 'blue',

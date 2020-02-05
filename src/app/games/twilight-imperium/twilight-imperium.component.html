@@ -66,8 +66,8 @@
 <section id="window" *ngIf="window" (keypress)="handleInput($event)">
     <div class="wrap">
         ti-score-tracker
-		<ti-stage-one [stageOneCard]="objOneCards[windowIndex]" *ngIf="objOneCards"></ti-stage-one>
-		<ti-stage-two [stageTwoCard]="objOneCards[windowIndex]" *ngIf="objTwoCards"></ti-stage-two>
+		<ti-stage-one [stageOneCard]="objOneCards[windowIndex]" *ngIf="showWindow(0)"></ti-stage-one>
+		<ti-stage-two [stageTwoCard]="objTwoCards[windowIndex]" *ngIf="showWindow(1)"></ti-stage-two>
         <button (click)="addScore()"> add score</button>
         <button class="close-btn" (click)="hideWindow()"><i class="fas fa-times"></i></button>
         <ul>
