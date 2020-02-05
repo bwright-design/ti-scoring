@@ -7,28 +7,12 @@
 <div style="color:white;">
 	Blue: {{ players[0].totalScore }}
 	Green: {{ players[1].totalScore }}
+	Purple: {{ players[2].totalScore }}
+	Red: {{ players[3].totalScore }}
+	Yellow: {{ players[4].totalScore }}
+	Black: {{ players[5].totalScore }}
+
 </div>
-<!-- <section>
-    <div class="obj-cards stage-one">
-        <div class="card" *ngFor='let card of objOneCards | slice:0:5;' (click)="showWindow(i)">
-            <div class="stars"></div>
-            <div class="card-objs">
-                <div class="card-header">
-                    {{ card.name }}
-                </div>
-                <div class="card-body">
-                    {{ card.condition }}
-                </div>
-                <div class="points">
-                    {{ card.points }}
-                </div>
-                <div class="card-footer">
-                    victory points
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 <section>
     <div id="ti-score-tracker">
         <div id="score-marker" class="green"></div>
@@ -40,44 +24,44 @@
 		<ti-stage-two *ngFor="let cardIndex of shuffleStageTwo" (click)="showWindow(cardIndex, 2)" [stageTwoCard]="objTwoCards[cardIndex]"></ti-stage-two>
     </div>
 </section>
-<!-- <section>
-    <div class="obj-cards stage-two">
-        <div class="card" *ngFor='let points of cards(5) ;let i= index'>
-            <div class="stars"></div>
-            <div class="card-objs">
-                <div class="card-header">
-                    LEAD FROM THE FRONT
-                </div>
-                <div class="card-body">
-                    Spend a total of 3 tokens from your tactic and/or stategy pools.
-                </div>
-                <div class="points">
-                    {{ i + 1 }}
-                </div>
-                <div class="card-footer">
-                    victory points
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
 
-<div class="overlay" *ngIf="window" (click)="hideWindow()"></div>
-<section id="window" *ngIf="window" (keypress)="handleInput($event)">
-    <div class="wrap">
-        ti-score-tracker
-		<ti-stage-one [stageOneCard]="objOneCards[windowIndex]" *ngIf="showWindow(0)"></ti-stage-one>
-		<ti-stage-two [stageTwoCard]="objTwoCards[windowIndex]" *ngIf="showWindow(1)"></ti-stage-two>
-        <button (click)="addScore()"> add score</button>
-        <button class="close-btn" (click)="hideWindow()"><i class="fas fa-times"></i></button>
-        <ul>
-            <li><input type="checkbox" (change)="checkBoxChanged($event, 'green', windowIndex, windowLevel)"> green</li>
-			<li><input type="checkbox" (change)="checkBoxChanged($event, 'blue', windowIndex, windowLevel)"> blue</li>
-            <!--<li><input type="checkbox" (checked)=""> Blue</li>
-            <li><input type="checkbox" (checked)=""> Green</li>
-            <li><input type="checkbox" (checked)=""> Purple</li>
-            <li><input type="checkbox" (checked)=""> Red</li>
-            <li><input type="checkbox" (checked)=""> Yellow</li>-->
-        </ul>
-    </div>
-</section>
+<!-- WINDOW -->
+<div class="window-wrap" *ngIf="window">
+	<div class="overlay" *ngIf="window" (click)="hideWindow()"></div>
+	<section id="window" class="scale-in-center" *ngIf="window" (keypress)="handleInput($event)">
+		<div class="wrap">
+			<button class="close-btn" (click)="hideWindow()"><i class="fas fa-times"></i></button>
+			<div class="card-display">
+				<ti-stage-one [stageOneCard]="objOneCards[windowIndex]" *ngIf="windowLevel == 1"></ti-stage-one>
+				<ti-stage-two [stageTwoCard]="objTwoCards[windowIndex]" *ngIf="windowLevel == 2"></ti-stage-two>
+			</div>
+			<!--<button (click)="addScore()"> add score</button>-->
+			<ul>
+				<li>
+					<input type="checkbox" id="blue" (change)="checkBoxChanged($event, 'blue', windowIndex, windowLevel)">
+					<label for="blue">Blue</label>
+				</li>
+				<li>
+					<input type="checkbox" id="green" (change)="checkBoxChanged($event, 'green', windowIndex, windowLevel)">
+					<label for="green">Green</label>
+				</li>
+				<li>
+					<input type="checkbox" id="purple" (change)="checkBoxChanged($event, 'purple', windowIndex, windowLevel)">
+					<label for="purple">Purple</label>
+				</li>
+				<li>
+					<input type="checkbox" id="red" (change)="checkBoxChanged($event, 'red', windowIndex, windowLevel)">
+					<label for="red">Red</label>
+				</li>
+				<li>
+					<input type="checkbox" id="yellow" (change)="checkBoxChanged($event, 'yellow', windowIndex, windowLevel)">
+					<label for="yellow">Yellow</label>
+				</li>
+				<li>
+					<input type="checkbox" id="black" (change)="checkBoxChanged($event, 'black', windowIndex, windowLevel)">
+					<label for="black">Black</label>
+				</li>
+			</ul>
+		</div>
+	</section>
+</div>

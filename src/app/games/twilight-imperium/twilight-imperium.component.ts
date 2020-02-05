@@ -45,6 +45,7 @@ export class TwilightImperiumComponent implements OnInit {
         this.windowLevel = level;
         this.windowIndex = i;
         this.window = true;
+        console.log('window level ' + this.windowLevel);
     }
     hideWindow() {
         this.window = false;
@@ -113,7 +114,7 @@ export class TwilightImperiumComponent implements OnInit {
                 this.shuffleStageOne.push(randomIndex);
             } else {
             }
-            console.log(JSON.stringify(this.shuffleStageOne));
+            console.log(JSON.stringify('shuffle stage one ' + this.shuffleStageOne));
         }
     }
     shuffleTwo() {
@@ -128,7 +129,7 @@ export class TwilightImperiumComponent implements OnInit {
                 this.shuffleStageTwo.push(randomIndex);
             } else {
             }
-            console.log(JSON.stringify(this.shuffleStageTwo));
+            console.log(JSON.stringify('shuffle stage two ' + this.shuffleStageTwo));
         }
     }
 
@@ -248,6 +249,34 @@ export class TwilightImperiumComponent implements OnInit {
         },
         {
             color: 'green',
+            stageOneObj: [],
+            stageTwoObj: [],
+            extraPoints: 0,
+            totalScore: 0
+        },
+        {
+            color: 'purple',
+            stageOneObj: [],
+            stageTwoObj: [],
+            extraPoints: 0,
+            totalScore: 0
+        },
+        {
+            color: 'red',
+            stageOneObj: [],
+            stageTwoObj: [],
+            extraPoints: 0,
+            totalScore: 0
+        },
+        {
+            color: 'yellow',
+            stageOneObj: [],
+            stageTwoObj: [],
+            extraPoints: 0,
+            totalScore: 0
+        },
+        {
+            color: 'black',
             stageOneObj: [],
             stageTwoObj: [],
             extraPoints: 0,
