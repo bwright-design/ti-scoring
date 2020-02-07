@@ -1,48 +1,67 @@
 <div class="stars"></div>
 <section>
     <div class="obj-cards stage-one">
-        <div class="card" *ngFor='let points of cards(5) ;let i= index'>
-            <div class="stars"></div>
-            <div class="card-objs">
-                <div class="card-header">
-                    LEAD FROM THE FRONT
-                </div>
-                <div class="card-body">
-                    Spend a total of 3 tokens from your tactic and/or stategy pools.
-                </div>
-                <div class="points">
-                    {{ i + 1 }}
-                </div>
-                <div class="card-footer">
-                    victory points
-                </div>
-            </div>
-        </div>
+        <ti-stage-one *ngFor="let cardIndex of shuffleStageOne" (click)="showWindow(cardIndex, 1)" [stageOneCard]="objOneCards[cardIndex]"></ti-stage-one>
     </div>
 </section>
+<div style="color:white;">
+	Blue: {{ players[0].totalScore }}
+	Green: {{ players[1].totalScore }}
+	Purple: {{ players[2].totalScore }}
+	Red: {{ players[3].totalScore }}
+	Yellow: {{ players[4].totalScore }}
+	Black: {{ players[5].totalScore }}
+
+</div>
 <section>
     <div id="ti-score-tracker">
+        <div id="score-marker" class="green"></div>
         <div class="number" *ngFor='let points of point(14) ;let i= index'>{{ i + 1 }}</div>
     </div>
 </section>
 <section>
     <div class="obj-cards stage-two">
-        <div class="card" *ngFor='let points of cards(5) ;let i= index'>
-            <div class="stars"></div>
-            <div class="card-objs">
-                <div class="card-header">
-                    LEAD FROM THE FRONT
-                </div>
-                <div class="card-body">
-                    Spend a total of 3 tokens from your tactic and/or stategy pools.
-                </div>
-                <div class="points">
-                    {{ i + 1 }}
-                </div>
-                <div class="card-footer">
-                    victory points
-                </div>
-            </div>
-        </div>
+		<ti-stage-two *ngFor="let cardIndex of shuffleStageTwo" (click)="showWindow(cardIndex, 2)" [stageTwoCard]="objTwoCards[cardIndex]"></ti-stage-two>
     </div>
 </section>
+
+<!-- WINDOW -->
+<div class="window-wrap" *ngIf="window">
+	<div class="overlay" *ngIf="window" (click)="hideWindow()"></div>
+	<section id="window" class="scale-in-center" *ngIf="window" (keypress)="handleInput($event)">
+		<div class="wrap">
+			<button class="close-btn" (click)="hideWindow()"><i class="fas fa-times"></i></button>
+			<div class="card-display">
+				<ti-stage-one [stageOneCard]="objOneCards[windowIndex]" *ngIf="windowLevel == 1"></ti-stage-one>
+				<ti-stage-two [stageTwoCard]="objTwoCards[windowIndex]" *ngIf="windowLevel == 2"></ti-stage-two>
+			</div>
+			<!--<button (click)="addScore()"> add score</button>-->
+			<ul>
+				<li>
+					<input type="checkbox" id="blue" (change)="checkBoxChanged($event, 'blue', windowIndex, windowLevel)">
+					<label for="blue">Blue</label>
+				</li>
+				<li>
+					<input type="checkbox" id="green" (change)="checkBoxChanged($event, 'green', windowIndex, windowLevel)">
+					<label for="green">Green</label>
+				</li>
+				<li>
+					<input type="checkbox" id="purple" (change)="checkBoxChanged($event, 'purple', windowIndex, windowLevel)">
+					<label for="purple">Purple</label>
+				</li>
+				<li>
+					<input type="checkbox" id="red" (change)="checkBoxChanged($event, 'red', windowIndex, windowLevel)">
+					<label for="red">Red</label>
+				</li>
+				<li>
+					<input type="checkbox" id="yellow" (change)="checkBoxChanged($event, 'yellow', windowIndex, windowLevel)">
+					<label for="yellow">Yellow</label>
+				</li>
+				<li>
+					<input type="checkbox" id="black" (change)="checkBoxChanged($event, 'black', windowIndex, windowLevel)">
+					<label for="black">Black</label>
+				</li>
+			</ul>
+		</div>
+	</section>
+</div>
